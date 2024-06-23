@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/cool-app/static/css/main.2a39c88e.css",
+    "main.js": "/cool-app/static/js/main.0793a654.js",
+    "static/js/453.b20521fe.chunk.js": "/cool-app/static/js/453.b20521fe.chunk.js",
+    "index.html": "/cool-app/index.html",
+    "main.2a39c88e.css.map": "/cool-app/static/css/main.2a39c88e.css.map",
+    "main.0793a654.js.map": "/cool-app/static/js/main.0793a654.js.map",
+    "453.b20521fe.chunk.js.map": "/cool-app/static/js/453.b20521fe.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2a39c88e.css",
+    "static/js/main.0793a654.js"
+  ]
+}
