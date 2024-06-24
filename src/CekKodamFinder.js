@@ -1,8 +1,12 @@
-// src/CekKodamFinder.js
-import React, { useState } from "react";
 
-const randomKodams = [
-  "Cacing Serigala Malam",
+// src/CekKodam.js
+import React, { useState, useEffect } from 'react';
+
+function CekKodamFinder({ onBack }) {
+  const [name, setName] = useState('');
+  const [kodam, setKodam] = useState('');
+
+  const randomKodamNames = ['Kodam Warrior', 'Kodam Guardian', 'Kodam Healer', 'Kodam Sage', "Cacing Serigala Malam",
   "Sapi Awak Bengkong",
   "Harimau Repang",
   "Jerapah Keceret",
@@ -11,50 +15,53 @@ const randomKodams = [
   "Hardcoe Man",
   "Sempak Hijau",
   "Sempak Cindo",
-  "Pocong Kendut Kendut",
-];
+  "Pocong Kendut Kendut",];
 
-function CekKodamFinder({ onBack }) {
-  const [name, setName] = useState("");
-  const [kodam, setKodam] = useState("");
+  useEffect(() => {
+    setKodam(''); // Hapus nama kodam setiap kali nama berubah
+  }, [name]);
 
-  const findKodam = () => {
-    const lowerCaseName = name.toLowerCase();
-    if (lowerCaseName === "cek kodam") {
-      setKodam("TNI");
+  const handleFindKodam = () => {
+    if (name.toLowerCase() === 'nora') {
+      setKodam('Kodam Princes');
+    } else if (name.toLowerCase() === 'reza') {
+      setKodam('Kodam Pangeran');
     } else {
-      const randomIndex = Math.floor(Math.random() * randomKodams.length);
-      setKodam(randomKodams[randomIndex]);
+      const randomIndex = Math.floor(Math.random() * randomKodamNames.length);
+      setKodam(randomKodamNames[randomIndex]);
     }
   };
 
   return (
-    <div className="bg-white p-8 rounded shadow-md w-96 mb-8">
+    <div className="bg-white p-8 rounded shadow-md w-96">
       <h1 className="text-2xl font-bold mb-4">Cek Kodam</h1>
-      <input
-        type="text"
-        placeholder="Masukkan nama"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className="border border-gray-300 p-2 rounded w-full mb-4"
-      />
+      <div className="mb-4">
+        <label htmlFor="nameInput" className="block mb-2">Masukkan Nama:</label>
+        <input
+          id="nameInput"
+          type="text"
+          className="border p-2 rounded w-full"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
       <button
-        onClick={findKodam}
+        onClick={handleFindKodam}
         className="bg-blue-500 text-white p-2 rounded w-full"
       >
         Cek Kodam
       </button>
-      {kodam && (
-        <div className="mt-4 p-2 bg-green-100 text-green-700 rounded">
-          {name}, kodam yang kamu punyai adalah {kodam}!
-        </div>
-      )}
       <button
         onClick={onBack}
-        className="bg-red-500 text-white p-2 rounded w-full mt-4"
+        className="bg-gray-500 text-white p-2 rounded w-full mt-4"
       >
         Kembali
       </button>
+      {kodam && (
+        <div className="mt-4">
+          <strong>Kodammu:</strong> {kodam}
+        </div>
+      )}
     </div>
   );
 }
