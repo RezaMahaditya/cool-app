@@ -1,10 +1,10 @@
 // src/PasanganFinder.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 
 function PasanganFinder({ onBack }) {
-  const [name, setName] = useState("");
-  const [gender, setGender] = useState("cowok"); // default cowok
-  const [partner, setPartner] = useState("");
+  const [name, setName] = useState('');
+  const [gender, setGender] = useState('cowok'); // default cowok
+  const [partner, setPartner] = useState('');
 
   const randomCewekNames = [
     "Sarah",
@@ -52,22 +52,21 @@ function PasanganFinder({ onBack }) {
     "Diki QT",
   ];
 
-  const handleFindPartner = () => {
-    if (name.toLowerCase() === "reza" && gender === "cowok") {
-      setPartner("Nora");
-    } else if (name.toLowerCase() === "nora" && gender === "cewek") {
-      setPartner("Reza");
-    } else {
-      const randomIndex =
-        gender === "cowok"
-          ? Math.floor(Math.random() * randomCewekNames.length)
-          : Math.floor(Math.random() * randomCowokNames.length);
+  useEffect(() => {
+    setPartner(''); // Hapus nama pasangan setiap kali nama berubah
+  }, [name]);
 
-      setPartner(
-        gender === "cowok"
-          ? randomCewekNames[randomIndex]
-          : randomCowokNames[randomIndex]
-      );
+  const handleFindPartner = () => {
+    if (name.toLowerCase() === 'reza' && gender === 'cowok') {
+      setPartner('Nora');
+    } else if (name.toLowerCase() === 'nora' && gender === 'cewek') {
+      setPartner('Reza');
+    } else {
+      const randomIndex = gender === 'cowok' ?
+        Math.floor(Math.random() * randomCewekNames.length) :
+        Math.floor(Math.random() * randomCowokNames.length);
+
+      setPartner(gender === 'cowok' ? randomCewekNames[randomIndex] : randomCowokNames[randomIndex]);
     }
   };
 
@@ -75,9 +74,7 @@ function PasanganFinder({ onBack }) {
     <div className="bg-white p-8 rounded shadow-md w-96">
       <h1 className="text-2xl font-bold mb-4">Cari Pasangan</h1>
       <div className="mb-4">
-        <label htmlFor="nameInput" className="block mb-2">
-          Masukkan Nama:
-        </label>
+        <label htmlFor="nameInput" className="block mb-2">Masukkan Nama:</label>
         <input
           id="nameInput"
           type="text"
