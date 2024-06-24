@@ -7,7 +7,6 @@ function PasanganFinder({ onBack }) {
   const [partner, setPartner] = useState("");
 
   const randomCewekNames = [
-    "Nora",
     "Sarah",
     "Jessica",
     "Emily",
@@ -25,7 +24,6 @@ function PasanganFinder({ onBack }) {
     "Peni",
   ];
   const randomCowokNames = [
-    "Reza",
     "Michael",
     "David",
     "John",
